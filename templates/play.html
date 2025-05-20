@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        {% if winner %}
+            {% if winner == 'Tie' %}
+                <p class="message">It's a tie!</p>
+            {% else %}
+                <p class="message">{{ winner }} wins!</p>
+            {% endif %}
+            <a href="{{ url_for('reset') }}">Play again</a>
+        {% else %}
+            <p>Your symbol: {{ session['player_symbol'] }} | Computer: {{ session['computer_symbol'] }}</p>
+            <table class="board">
+            {% for row in range(3) %}
+                <tr>
+                {% for col in range(3) %}
+                    {% set idx = row*3 + col %}
+                    <td>
+                        {% if board[idx] == ' ' %}
+                            <a href="{{ url_for('play', move=idx) }}">&nbsp;</a>
+                        {% else %}
+                            {{ board[idx] }}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </table>
+            <a href="{{ url_for('reset') }}">Reset</a>
+        {% endif %}
+    </div>
+</body>
+</html>
