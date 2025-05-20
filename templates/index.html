@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        <form action="{{ url_for('start') }}" method="post">
+            <p>Select your symbol:</p>
+            <label><input type="radio" name="symbol" value="X" checked> X</label>
+            <label><input type="radio" name="symbol" value="O"> O</label>
+            <button type="submit">Start Game</button>
+        </form>
+    </div>
+</body>
+</html>
