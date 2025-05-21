@@ -10,6 +10,9 @@ def initialize_game(symbol):
     session['board'] = [EMPTY] * 9
     session['player_symbol'] = symbol
     session['computer_symbol'] = 'O' if symbol == 'X' else 'X'
+    session['winner'] = None
+    # O always goes first
+    session['turn'] = 'player' if symbol == 'O' else 'computer'
     session['turn'] = 'player'
 
 
@@ -24,6 +27,10 @@ def start():
     if symbol not in ('X', 'O'):
         symbol = 'X'
     initialize_game(symbol)
+    # If the computer (O) goes first, make the opening move
+    if session['turn'] == 'computer':
+        computer_move()
+        session['turn'] = 'player'
     return redirect(url_for('play'))
 
 
