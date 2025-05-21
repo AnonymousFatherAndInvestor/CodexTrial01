@@ -17,7 +17,6 @@ def initialize_game(symbol):
         computer_move()
         session['turn'] = 'player'
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -29,7 +28,10 @@ def start():
     if symbol not in ('X', 'O'):
         symbol = 'X'
     initialize_game(symbol)
-    return redirect(url_for('play'))
+    # If the computer (O) goes first, make the opening move
+    if session['turn'] == 'computer':
+        computer_move()
+        session['turn'] = 'player'
 
 
 def check_winner(board):
