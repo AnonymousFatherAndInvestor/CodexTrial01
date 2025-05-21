@@ -7,12 +7,16 @@ EMPTY = " "
 
 
 def initialize_game(symbol):
+    """Initialize session state for a new game."""
     session['board'] = [EMPTY] * 9
     session['player_symbol'] = symbol
     session['computer_symbol'] = 'O' if symbol == 'X' else 'X'
-    # O always goes first
-    session['turn'] = 'player' if symbol == 'O' else 'computer'
     session['winner'] = None
+    if symbol == 'X':
+        session['turn'] = 'computer'
+    else:
+        session['turn'] = 'player'
+
 
 @app.route('/')
 def index():
@@ -27,7 +31,11 @@ def start():
     initialize_game(symbol)
     if session['turn'] == 'computer':
         computer_move()
+        winner = check_winner(session['board'])
+        if winner:
+            session['winner'] = winner
         session['turn'] = 'player'
+    return redirect(url_for('play'))
 
 def check_winner(board):
     lines = [
@@ -79,8 +87,9 @@ def play():
     if board is None:
         return redirect(url_for('index'))
 
+    winner = session.get('winner')
     move = request.args.get('move')
-    if move is not None and session['turn'] == 'player':
+    if move is not None and session['turn'] == 'player' and winner is None:
         idx = int(move)
         if board[idx] == EMPTY:
             board[idx] = session['player_symbol']
@@ -88,15 +97,17 @@ def play():
             winner = check_winner(board)
             if winner is None:
                 computer_move()
-                session['turn'] = 'player'
-            else:
+                winner = check_winner(board)
+            if winner:
                 session['winner'] = winner
+            else:
+                session['turn'] = 'player'
+
     winner = session.get('winner')
     if winner is None:
         winner = check_winner(board)
         if winner:
             session['winner'] = winner
-    return render_template('play.html', board=board, winner=session.get('winner'))
 
 
 @app.route('/reset')

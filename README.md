@@ -1,6 +1,6 @@
 # Tic Tac Toe Web App
 
-This repository contains a simple Tic Tac Toe (〇×ゲーム) web application built with Flask. Users can choose to play as X or O and compete against the computer. The game always starts with **O**, so if you select X the computer makes the opening move.
+This repository contains a simple Tic Tac Toe (〇×ゲーム) web application built with Flask. Users can choose to play as X or O and compete against the computer.
 
 ## Running Locally
 
@@ -17,7 +17,7 @@ Access `http://localhost:5000` in your browser to play.
 
 ## Deployment to Render
 
-The project includes a `render.yaml` configuration and a `Procfile`. When you create a new Web Service on Render, it will automatically install dependencies and run the app using Gunicorn.
+The project includes a `render.yaml` configuration. When you create a new Web Service on Render, it will automatically install dependencies and run the app using Gunicorn.
 
 ## Computer Strategy
 
