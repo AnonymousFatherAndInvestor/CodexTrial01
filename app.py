@@ -13,6 +13,7 @@ def initialize_game(symbol):
     session['winner'] = None
     # O always goes first
     session['turn'] = 'player' if symbol == 'O' else 'computer'
+    session['turn'] = 'player'
 
 
 @app.route('/')

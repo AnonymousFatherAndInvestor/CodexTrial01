@@ -18,6 +18,7 @@ Access `http://localhost:5000` in your browser to play.
 ## Deployment to Render
 
 The project includes a `render.yaml` configuration. When you create a new Web Service on Render, it will automatically install dependencies and run the app using Gunicorn.
+A `Procfile` is also included specifying `gunicorn app:app` so Render knows how to start the server.
 
 ## Computer Strategy
 
