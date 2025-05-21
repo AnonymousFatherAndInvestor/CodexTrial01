@@ -1,6 +1,6 @@
 # Tic Tac Toe Web App
 
-This repository contains a simple Tic Tac Toe (〇×ゲーム) web application built with Flask. Users can choose to play as X or O and compete against the computer.
+This repository contains a simple Tic Tac Toe (〇×ゲーム) web application built with Flask. Users can choose to play as X or O and compete against the computer. Regardless of who selects a symbol, **O always makes the first move**. If you pick X, the computer starts; choosing O lets you go first.
 
 ## Running Locally
 
