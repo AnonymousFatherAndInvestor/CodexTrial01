@@ -12,12 +12,20 @@ This repository contains a simple Tic Tac Toe (〇×ゲーム) web application b
    ```bash
    python app.py
    ```
+   For a production-like environment (or when deploying), use Gunicorn:
+   ```bash
+   gunicorn app:app
+   ```
 
 Access `http://localhost:5000` in your browser to play.
 
 ## Deployment to Render
 
-The project includes a `render.yaml` configuration. When you create a new Web Service on Render, it will automatically install dependencies and run the app using Gunicorn.
+The project includes a `render.yaml` configuration and a `Procfile`. When you create a new Web Service on Render, it will automatically install dependencies and run the app using Gunicorn.
+
+### Turn Order
+
+O always moves first. If you choose X, the computer starts as O and makes the first move automatically. When you choose O, you take the first turn.
 
 ## Computer Strategy
 
