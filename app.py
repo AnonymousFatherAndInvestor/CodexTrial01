@@ -37,7 +37,6 @@ def start():
         session['turn'] = 'player'
     return redirect(url_for('play'))
 
-
 def check_winner(board):
     lines = [
         (0, 1, 2), (3, 4, 5), (6, 7, 8),
@@ -109,8 +108,6 @@ def play():
         winner = check_winner(board)
         if winner:
             session['winner'] = winner
-
-    return render_template('play.html', board=board, winner=session.get('winner'))
 
 
 @app.route('/reset')
